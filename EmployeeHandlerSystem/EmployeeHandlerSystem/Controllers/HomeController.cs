@@ -6,6 +6,7 @@ namespace EmployeeHandlerSystem.Controllers
 {
     public class HomeController : Controller
     {
+        
 
         public IActionResult Index()
         {
@@ -17,6 +18,5 @@ namespace EmployeeHandlerSystem.Controllers
             return View();
         }
 
-       
     }
 }
