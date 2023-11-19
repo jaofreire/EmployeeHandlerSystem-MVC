@@ -1,5 +1,8 @@
+using EmployeeHandlerSystem.Infraestructure.Data;
 using EmployeeHandlerSystem.Integration;
 using EmployeeHandlerSystem.Integration.Refit;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Refit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,9 +10,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddEntityFrameworkSqlServer().AddDbContext<EmployeeHandlerDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"));
+});
+
 builder.Services.AddRefitClient<IApiLoginIntegrationRefit>().ConfigureHttpClient(c =>
 {
-    c.BaseAddress = new Uri("http://localhost:44369/");
+    c.BaseAddress = new Uri("https://localhost:44369/");
 });
 
 builder.Services.AddScoped<IApiLoginIntegration, ApiLoginIntegration>();
@@ -28,6 +36,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

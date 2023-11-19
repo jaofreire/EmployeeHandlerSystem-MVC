@@ -8,7 +8,7 @@ namespace EmployeeHandlerSystem.Integration
         Task<string> AuthenticateToken(string name);
 
 
-        Task<EmployeeModel> RegisterNewEmployee(EmployeeDTORegisterLogin newEmployee);
+        Task<EmployeeModel> RegisterNewEmployee(EmployeeLoginModel newEmployee);
         Task<List<EmployeeDTO>> GetAllEmployee();
         Task<EmployeeDTO> GetEmployeeById(int id);
         Task<EmployeeModel> UpdateEmployee(EmployeeModel employee, int id);

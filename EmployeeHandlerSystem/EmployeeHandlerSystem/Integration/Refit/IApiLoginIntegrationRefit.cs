@@ -11,7 +11,7 @@ namespace EmployeeHandlerSystem.Integration.Refit
 
 
         [Post("/api/v1/Employee/Register")]
-        Task<EmployeeModel> RegisterEmployee(EmployeeDTORegisterLogin newEmployee);
+        Task<EmployeeModel> RegisterEmployee(EmployeeLoginModel newEmployee);
 
         [Get("/api/v1/Employee/GetAll")]
         Task<List<EmployeeDTO>> GetAllEmployee();

@@ -29,7 +29,7 @@ namespace EmployeeHandlerSystem.Integration
             return await _refit.GetEmployeeById(id);
         }
 
-        public async Task<EmployeeModel> RegisterNewEmployee(EmployeeDTORegisterLogin newEmployee)
+        public async Task<EmployeeModel> RegisterNewEmployee(EmployeeLoginModel newEmployee)
         {
             return await _refit.RegisterEmployee(newEmployee);
         }

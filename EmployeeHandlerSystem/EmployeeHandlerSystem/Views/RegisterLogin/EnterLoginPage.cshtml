@@ -1,0 +1,25 @@
+﻿@model EmployeeLoginModel
+@{
+    
+    ViewData["Title"] = "Login Page";
+}
+
+<form asp-controller="RegisterLogin" asp-action="Register">
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" asp-for="Name" class="form-control" id="Name">
+        @Html.ValidationMessageFor(x => x.Name)
+    </div>
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input type="text" asp-for="Email" class="form-control" id="Email" >
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" asp-for="Password" class="form-control" id="Password">
+        @Html.ValidationMessageFor(x => x.Password)
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
