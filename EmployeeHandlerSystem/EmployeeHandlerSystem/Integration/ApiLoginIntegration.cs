@@ -29,6 +29,11 @@ namespace EmployeeHandlerSystem.Integration
             return await _refit.GetEmployeeById(id);
         }
 
+        public async Task<EmployeeModel> GetEmployeeByName(string name)
+        {
+            return await _refit.GetEmployeeByName(name);
+        }
+
         public async Task<EmployeeModel> RegisterNewEmployee(EmployeeLoginModel newEmployee)
         {
             return await _refit.RegisterEmployee(newEmployee);

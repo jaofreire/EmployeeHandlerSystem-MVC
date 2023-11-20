@@ -9,6 +9,7 @@ namespace EmployeeHandlerSystem.Infraestructure.Data
         {
         }
 
+        public DbSet<EmployeeModel> Employees { get; set; }
        
     }
 }

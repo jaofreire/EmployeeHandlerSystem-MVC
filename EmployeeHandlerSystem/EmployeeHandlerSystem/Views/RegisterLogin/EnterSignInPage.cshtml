@@ -1,11 +1,17 @@
 ﻿@model EmployeeLoginModel
 @{
     Layout = "_LayoutLogout";
-    ViewData["Title"] = "Login Page";
 }
 
-<h1>REGISTER EMPLOYEE</h1>
-<form asp-controller="RegisterLogin" asp-action="Register">
+@if(TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<h1>Login</h1>
+<form asp-controller="RegisterLogin" asp-action="ConfirmeLogin">
     <div class="mb-3">
         <label for="Name" class="form-label">Name</label>
         <input type="text" asp-for="Name" class="form-control" id="Name">
@@ -23,9 +29,9 @@
     </div>
 
      <div class="d-grid gap-2 col-6 mx-auto">
-        <button type="submit" class="btn btn-outline-primary" asp-controller="RegisterLogin" asp-action="EnterSignInPage">SIGN IN</button>
-        <P>IF YOU HAVE A ACCOUNT REGISTED IN THE SYSTEM</P>
-       <button type="submit" class="btn btn-primary">REGISTER</button>
+        <button type="submit" class="btn btn-outline-primary" asp-controller="RegisterLogin" asp-action="EnterLoginPage">SIGN UP/REGISTER</button>
+        <P>IF YOU HAVEN'T A ACCOUNT REGISTED IN THE SYSTEM</P>
+       <button type="submit" class="btn btn-primary">Enter</button>
      </div>
 
 </form>

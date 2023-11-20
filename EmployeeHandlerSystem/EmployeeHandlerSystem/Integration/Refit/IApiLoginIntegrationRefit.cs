@@ -19,6 +19,9 @@ namespace EmployeeHandlerSystem.Integration.Refit
         [Get("/api/v1/Employee/GetById/{id}")]
         Task<EmployeeDTO> GetEmployeeById(int id);
 
+        [Get("/api/v1/Employee/GetByName/{name}")]
+        Task<EmployeeModel> GetEmployeeByName(string name);
+
         [Put("/api/v1/Employee/Update/{id}")]
         Task<EmployeeModel> UpdateEmployee(EmployeeModel employee, int id);
 
