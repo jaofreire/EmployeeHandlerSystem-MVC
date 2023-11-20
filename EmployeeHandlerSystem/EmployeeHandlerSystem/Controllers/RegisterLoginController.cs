@@ -1,5 +1,6 @@
 ﻿using EmployeeHandlerSystem.Domain.DTOs;
 using EmployeeHandlerSystem.Domain.Models;
+using EmployeeHandlerSystem.Helper.Interface;
 using EmployeeHandlerSystem.Infraestructure.Data;
 using EmployeeHandlerSystem.Integration;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +10,12 @@ namespace EmployeeHandlerSystem.Controllers
     public class RegisterLoginController : Controller
     {
         private readonly IApiLoginIntegration _apiLoginIntegration;
+        private readonly ISessionEmployee _sessionEmployee;
 
-        public RegisterLoginController(IApiLoginIntegration apiLoginIntegration)
-        { 
+        public RegisterLoginController(IApiLoginIntegration apiLoginIntegration, ISessionEmployee sessionEmployee)
+        {
             _apiLoginIntegration = apiLoginIntegration;
+            _sessionEmployee = sessionEmployee;
         }
 
         public IActionResult EnterLoginPage()
@@ -22,6 +25,7 @@ namespace EmployeeHandlerSystem.Controllers
 
         public IActionResult EnterSignInPage()
         {
+            if (_sessionEmployee.GetSessionEmployee() != null) return RedirectToAction("Index", "Home");
             return View();
         }
 
@@ -51,6 +55,7 @@ namespace EmployeeHandlerSystem.Controllers
 
                 if (employee.Name == employeeConfirm.Name && employee.Email == employeeConfirm.Email && employee.Password == employeeConfirm.Password)
                 {
+                    _sessionEmployee.AddSessionEmployee(employeeConfirm);
                     return RedirectToAction("Index", "Home");
                 }
                 TempData["ErrorMessage"] = "INVALID CREDENTIALS!!";
@@ -64,6 +69,13 @@ namespace EmployeeHandlerSystem.Controllers
                 return RedirectToAction("EnterSignInPage");
             }
            
+        }
+
+        public IActionResult LogOut()
+        {
+            _sessionEmployee.RemoveSessionEmployee();
+
+            return RedirectToAction("EnterSignInPage");
         }
 
     }

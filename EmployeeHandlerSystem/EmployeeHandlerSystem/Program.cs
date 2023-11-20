@@ -1,3 +1,5 @@
+using EmployeeHandlerSystem.Helper;
+using EmployeeHandlerSystem.Helper.Interface;
 using EmployeeHandlerSystem.Infraestructure.Data;
 using EmployeeHandlerSystem.Integration;
 using EmployeeHandlerSystem.Integration.Refit;
@@ -20,7 +22,19 @@ builder.Services.AddRefitClient<IApiLoginIntegrationRefit>().ConfigureHttpClient
     c.BaseAddress = new Uri("https://localhost:44369/");
 });
 
+builder.Services.AddSession(x =>
+{
+    x.Cookie.HttpOnly = true;
+    x.Cookie.IsEssential = true;
+});
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddScoped<IApiLoginIntegration, ApiLoginIntegration>();
+builder.Services.AddScoped<ISessionEmployee, SessionEmployee>();
+
+
+
 
 var app = builder.Build();
 
@@ -40,6 +54,8 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
