@@ -1,0 +1,26 @@
+﻿@model EmployeeModel
+@{
+}
+<form asp-controller="Profile" asp-action="ConfirmUpdate">
+
+    <div class=" mb-3">
+        <label for="Name" class="form-label">NewName</label>
+        <input type="text" class="form-control" asp-for="Name" id="Name">
+    </div>
+    <div class=" mb-3">
+        <label for="Email" class="form-label">NewEmail</label>
+        <input type="text" class="form-control" asp-for="Email" id="Email">
+    </div>
+    <div class=" mb-3">
+        <label for="Email" class="form-label">NewPassword</label>
+        <input type="text" class="form-control" asp-for="Password" id="Password">
+    </div>
+    <div class="row">
+        <div class="d-grid gap-2 col-12 mx-auto">
+            <button type="submit" class="btn btn-outline-warning">Update Profile</button>
+        </div>
+    </div>
+
+</form>
+
+

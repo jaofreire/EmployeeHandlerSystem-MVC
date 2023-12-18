@@ -32,7 +32,6 @@ namespace EmployeeHandlerSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(EmployeeLoginModel newEmployee)
         {
-
             try
             {
                 await _apiLoginIntegration.RegisterNewEmployee(newEmployee);
